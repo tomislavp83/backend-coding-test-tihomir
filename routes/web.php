@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\CasinoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $casinos = \App\Models\Casino::with('faqs')->get();
+    return view('pages.home')->withCasinos($casinos);
 });
+
+Route::resource('casinos', CasinoController::class)->names([
+    'edit' => 'casinos.edit',
+    'create' => 'casinos.create'
+]);
