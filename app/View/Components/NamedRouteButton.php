@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class CasinoCreateButton extends Component
+class NamedRouteButton extends Component
 {
     /**
      * Named route
@@ -38,6 +38,6 @@ class CasinoCreateButton extends Component
      */
     public function render()
     {
-        return view('components.casino-create-button');
+        return view('components.named-route-button');
     }
 }

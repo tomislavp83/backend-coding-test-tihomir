@@ -19,7 +19,11 @@
 
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
     <div id="app" class="container mx-auto">
-        @yield('content')
+        <div class="overflow-x-auto">
+            <div class="min-w-screen min-h-screen bg-gray-100 flex flex-col items-center justify-center bg-gray-100 font-sans overflow-hidden">
+            @yield('content')
+            </div>
+        </div>
     </div>
 </body>
 </html>

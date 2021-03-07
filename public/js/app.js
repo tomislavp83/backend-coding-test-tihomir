@@ -1834,9 +1834,9 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CasinoCreateEdit.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CasinoCreateEdit.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1849,9 +1849,140 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log("Example component mounted");
+  props: {
+    casinoId: {
+      required: false,
+      type: Number,
+      "default": 0
+    }
+  },
+  data: function data() {
+    return {
+      casinoName: '',
+      faqs: [],
+
+      /**
+       * List of faq id's for deletion
+       * @var delete|array
+       */
+      "delete": []
+    };
+  },
+  methods: {
+    /**
+     *
+     */
+    addFaq: function addFaq() {
+      this.faqs.push({
+        question: '',
+        answer: ''
+      });
+    },
+
+    /**
+     *
+     * @param key
+     */
+    deleteFaq: function deleteFaq(key) {
+      var faq = this.faqs[key];
+
+      if (faq.hasOwnProperty('id')) {
+        this["delete"].push(faq.id);
+      }
+
+      this.removeFaq(key);
+    },
+    formData: function formData(casinoId) {
+      var data = new FormData();
+      if (casinoId) data.append('casino_id', casinoId);
+      data.append('faqs', this.faqs);
+      data.append('delete', this["delete"]);
+      return data;
+    },
+
+    /**
+     *
+     * @param id
+     */
+    loadCasino: function loadCasino(id) {
+      var _this = this;
+
+      fetch("/casinos/".concat(id)).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        _this.populate(response);
+      })["catch"](function (error) {
+        console.error('error:', error);
+      });
+    },
+
+    /**
+     *
+     * @param data
+     */
+    populate: function populate(data) {
+      this.casinoName = data.name;
+      this.faqs = data.faqs;
+    },
+    removeFaq: function removeFaq(id) {
+      this.faqs.splice(id, 1);
+    },
+    save: function save() {
+      var _this2 = this;
+
+      fetch("/casinos/".concat(id)).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        _this2.populate(response);
+      })["catch"](function (error) {
+        console.error('error:', error);
+      });
+    },
+    update: function update() {
+      axios.put("/casinos/".concat(this.casinoId, "/"), {
+        data: {
+          id: this.casinoId,
+          faqs: this.faqs,
+          "delete": this["delete"]
+        }
+      }).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.error('error:', error);
+      });
+    }
+  },
+  created: function created() {
+    if (this.casinoId) this.loadCasino(this.casinoId);
   }
 });
 
@@ -19294,9 +19425,9 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
+/***/ "./resources/js/components/CasinoCreateEdit.vue":
 /*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
+  !*** ./resources/js/components/CasinoCreateEdit.vue ***!
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -19305,8 +19436,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CasinoCreateEdit_vue_vue_type_template_id_62fffbe6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CasinoCreateEdit.vue?vue&type=template&id=62fffbe6& */ "./resources/js/components/CasinoCreateEdit.vue?vue&type=template&id=62fffbe6&");
+/* harmony import */ var _CasinoCreateEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CasinoCreateEdit.vue?vue&type=script&lang=js& */ "./resources/js/components/CasinoCreateEdit.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -19316,9 +19447,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.render,
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _CasinoCreateEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _CasinoCreateEdit_vue_vue_type_template_id_62fffbe6___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CasinoCreateEdit_vue_vue_type_template_id_62fffbe6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -19328,14 +19459,14 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
+component.options.__file = "resources/js/components/CasinoCreateEdit.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/CasinoCreateEdit.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/CasinoCreateEdit.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -19344,31 +19475,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CasinoCreateEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CasinoCreateEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CasinoCreateEdit.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CasinoCreateEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
+/***/ "./resources/js/components/CasinoCreateEdit.vue?vue&type=template&id=62fffbe6&":
 /*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
+  !*** ./resources/js/components/CasinoCreateEdit.vue?vue&type=template&id=62fffbe6& ***!
   \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.render,
-/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CasinoCreateEdit_vue_vue_type_template_id_62fffbe6___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CasinoCreateEdit_vue_vue_type_template_id_62fffbe6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CasinoCreateEdit_vue_vue_type_template_id_62fffbe6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CasinoCreateEdit.vue?vue&type=template&id=62fffbe6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CasinoCreateEdit.vue?vue&type=template&id=62fffbe6&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CasinoCreateEdit.vue?vue&type=template&id=62fffbe6&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CasinoCreateEdit.vue?vue&type=template&id=62fffbe6& ***!
   \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -19382,7 +19513,161 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Hello, World!")])
+  return _c("div", { staticClass: "p-4" }, [
+    _c("div", { staticClass: "mt-5 mb-10 text-sm" }, [
+      _c(
+        "label",
+        { staticClass: "block text-black", attrs: { for: "casino-name" } },
+        [_vm._v("Casino name")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.casinoName,
+            expression: "casinoName"
+          }
+        ],
+        staticClass:
+          "rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full",
+        attrs: { type: "text", id: "casino-name", placeholder: "bellagio" },
+        domProps: { value: _vm.casinoName },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.casinoName = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _vm.casinoId
+      ? _c(
+          "div",
+          [
+            _c("h3", { staticClass: "text-xl font-medium" }, [_vm._v("Faq")]),
+            _vm._v(" "),
+            _vm._l(_vm.faqs, function(faq, key) {
+              return _c(
+                "div",
+                {
+                  key: key,
+                  staticClass:
+                    "my-5 text-sm border-b border-gray-200 pb-4 flex flex-col"
+                },
+                [
+                  _c(
+                    "label",
+                    { staticClass: "block text-black", attrs: { for: "faq" } },
+                    [_vm._v("Question:")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: faq.question,
+                        expression: "faq.question"
+                      }
+                    ],
+                    staticClass:
+                      "rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full mb-4",
+                    attrs: {
+                      type: "text",
+                      id: "faq",
+                      placeholder: "faq everything"
+                    },
+                    domProps: { value: faq.question },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(faq, "question", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: faq.answer,
+                        expression: "faq.answer"
+                      }
+                    ],
+                    staticClass: "w-full bg-gray-100 p-3 h-20 outline-none",
+                    attrs: {
+                      spellcheck: "true",
+                      placeholder: "answer what you know"
+                    },
+                    domProps: { value: faq.answer },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(faq, "answer", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.casinoId
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "bg-red-600 p-2 mt-2 rounded-md ml-auto",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteFaq(key)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "text-white w-4 h-4",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                fill: "none",
+                                viewBox: "0 0 24 24",
+                                stroke: "currentColor"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round",
+                                  "stroke-width": "2",
+                                  d:
+                                    "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _c("button", { on: { click: _vm.addFaq } }, [_vm._v("add faq")])
+          ],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.update } }, [_vm._v("save")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -31506,7 +31791,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue"
+	"./components/CasinoCreateEdit.vue": "./resources/js/components/CasinoCreateEdit.vue"
 };
 
 

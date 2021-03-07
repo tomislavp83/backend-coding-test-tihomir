@@ -17,7 +17,7 @@ use \App\Http\Controllers\CasinoController;
 Route::get('/', function () {
     $casinos = \App\Models\Casino::with('faqs')->get();
     return view('pages.home')->withCasinos($casinos);
-});
+})->name('home');
 
 Route::resource('casinos', CasinoController::class)->names([
     'edit' => 'casinos.edit',

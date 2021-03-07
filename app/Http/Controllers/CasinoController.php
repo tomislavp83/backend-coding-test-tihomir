@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Casino;
 use Illuminate\Http\Request;
 
 class CasinoController extends Controller
@@ -23,7 +24,7 @@ class CasinoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.casino');
     }
 
     /**
@@ -43,9 +44,9 @@ class CasinoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        return Casino::with('faqs')->findOrFail($id);
     }
 
     /**
@@ -56,7 +57,7 @@ class CasinoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('pages.casino')->withId($id);
     }
 
     /**
@@ -68,7 +69,7 @@ class CasinoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request->all();
     }
 
     /**
