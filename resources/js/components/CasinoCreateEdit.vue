@@ -8,7 +8,7 @@
                    placeholder="bellagio"
                    v-model="casinoName"/>
         </div>
-        <div v-if="casinoId">
+        <div>
             <h3 class="text-xl font-medium">Faq</h3>
             <div class="my-5 text-sm border-b border-gray-200 pb-4 flex flex-col" v-for="(faq, key) in faqs" :key="key">
                 <label for="faq" class="block text-black">Question:</label>

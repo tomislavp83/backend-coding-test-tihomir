@@ -19545,126 +19545,124 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _vm.casinoId
-      ? _c(
-          "div",
-          [
-            _c("h3", { staticClass: "text-xl font-medium" }, [_vm._v("Faq")]),
-            _vm._v(" "),
-            _vm._l(_vm.faqs, function(faq, key) {
-              return _c(
-                "div",
-                {
-                  key: key,
-                  staticClass:
-                    "my-5 text-sm border-b border-gray-200 pb-4 flex flex-col"
+    _c(
+      "div",
+      [
+        _c("h3", { staticClass: "text-xl font-medium" }, [_vm._v("Faq")]),
+        _vm._v(" "),
+        _vm._l(_vm.faqs, function(faq, key) {
+          return _c(
+            "div",
+            {
+              key: key,
+              staticClass:
+                "my-5 text-sm border-b border-gray-200 pb-4 flex flex-col"
+            },
+            [
+              _c(
+                "label",
+                { staticClass: "block text-black", attrs: { for: "faq" } },
+                [_vm._v("Question:")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: faq.question,
+                    expression: "faq.question"
+                  }
+                ],
+                staticClass:
+                  "rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full mb-4",
+                attrs: {
+                  type: "text",
+                  id: "faq",
+                  placeholder: "faq everything"
                 },
-                [
-                  _c(
-                    "label",
-                    { staticClass: "block text-black", attrs: { for: "faq" } },
-                    [_vm._v("Question:")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: faq.question,
-                        expression: "faq.question"
-                      }
-                    ],
-                    staticClass:
-                      "rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full mb-4",
-                    attrs: {
-                      type: "text",
-                      id: "faq",
-                      placeholder: "faq everything"
-                    },
-                    domProps: { value: faq.question },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(faq, "question", $event.target.value)
-                      }
+                domProps: { value: faq.question },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: faq.answer,
-                        expression: "faq.answer"
-                      }
-                    ],
-                    staticClass: "w-full bg-gray-100 p-3 h-20 outline-none",
-                    attrs: {
-                      spellcheck: "true",
-                      placeholder: "answer what you know"
-                    },
-                    domProps: { value: faq.answer },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(faq, "answer", $event.target.value)
-                      }
+                    _vm.$set(faq, "question", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: faq.answer,
+                    expression: "faq.answer"
+                  }
+                ],
+                staticClass: "w-full bg-gray-100 p-3 h-20 outline-none",
+                attrs: {
+                  spellcheck: "true",
+                  placeholder: "answer what you know"
+                },
+                domProps: { value: faq.answer },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.casinoId
-                    ? _c(
-                        "button",
+                    _vm.$set(faq, "answer", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.casinoId
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "bg-red-600 p-2 mt-2 rounded-md ml-auto",
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteFaq(key)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "svg",
                         {
-                          staticClass: "bg-red-600 p-2 mt-2 rounded-md ml-auto",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteFaq(key)
-                            }
+                          staticClass: "text-white w-4 h-4",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            fill: "none",
+                            viewBox: "0 0 24 24",
+                            stroke: "currentColor"
                           }
                         },
                         [
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "text-white w-4 h-4",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                viewBox: "0 0 24 24",
-                                stroke: "currentColor"
-                              }
-                            },
-                            [
-                              _c("path", {
-                                attrs: {
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round",
-                                  "stroke-width": "2",
-                                  d:
-                                    "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                }
-                              })
-                            ]
-                          )
+                          _c("path", {
+                            attrs: {
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round",
+                              "stroke-width": "2",
+                              d:
+                                "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            }
+                          })
                         ]
                       )
-                    : _vm._e()
-                ]
-              )
-            }),
-            _vm._v(" "),
-            _c("button", { on: { click: _vm.addFaq } }, [_vm._v("add faq")])
-          ],
-          2
-        )
-      : _vm._e(),
+                    ]
+                  )
+                : _vm._e()
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _c("button", { on: { click: _vm.addFaq } }, [_vm._v("add faq")])
+      ],
+      2
+    ),
     _vm._v(" "),
     _c("button", { on: { click: _vm.update } }, [_vm._v("save")])
   ])
