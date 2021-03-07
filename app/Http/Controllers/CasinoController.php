@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Casino;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class CasinoController extends Controller
@@ -69,7 +70,15 @@ class CasinoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        $request = $request->json()->all();
+
+        $faqs = collect($request['data']['faqs']);
+
+        $casino = Casino::find($id);
+
+        $casino->faqs()->updateOrCreate($faqs->toArray());
+
+        return $casino;
     }
 
     /**

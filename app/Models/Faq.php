@@ -9,6 +9,7 @@ class Faq extends Model
 {
     use HasFactory;
 
+    protected $guarded =  ['id'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
